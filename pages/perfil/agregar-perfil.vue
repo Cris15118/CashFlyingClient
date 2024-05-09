@@ -137,11 +137,11 @@ const agregarPerfil = ()=>{
     </el-form-item>
   </el-col>
   </el-row>
-    <el-form-item>
-      <el-button style="width: 100%;" class="shake" @click="agregarPerfil">Crear Perfil</el-button>
-     <router-link style="width: 100%;" to="/perfil/perfil-usuario"> <el-button class="shake" @click="agregarPerfil">ver Perfil</el-button></router-link>
+    <div class="crear-ver">
+      <el-button class="shake" @click="agregarPerfil">Crear Perfil</el-button>
+     <router-link  to="/perfil/perfil-usuario"> <el-button class="shake" @click="agregarPerfil" style="background-color: #409EFF;">ver Perfil</el-button></router-link>
       
-    </el-form-item>
+    </div>
   </el-form>
 </div>
 </template>
@@ -154,5 +154,9 @@ const agregarPerfil = ()=>{
 }
 .el-col{
   padding-right: 5rem;
+}
+.crear-ver{
+  display: flex;
+  justify-content: space-around;
 }
 </style>

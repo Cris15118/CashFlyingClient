@@ -23,6 +23,8 @@ interface Perfil{
   pais:string
 }
 
+const supaAuth = useSupabaseClient().auth
+const user = useSupabaseUser()
 const router=useRouter()
 const perfilStore =usePerfilStore()
 const perfilId = router.currentRoute.value.params.id
@@ -56,6 +58,24 @@ onMounted(()=>{
 const editarPerfil = (perfil:Perfil)=>{
   router.push("/perfil/editar/" + perfil.id)
 }
+const logout = async ()=>{
+  const {error} = await supaAuth.signOut()
+  if(error){
+    error.value = error.message
+    setTimeout(()=>{
+      error.value=''
+    },3000)
+    return
+  }else{
+    return navigateTo('/auth/register')
+  }
+}
+const eliminarPerfil = (perfil:string)=>{
+  perfilStore.deletePerfil(perfil.id)
+  perfiles.value = perfilStore.perfil
+  //TODO hacer que si se elimina el perfil tambien se elimine de la base de datos
+  logout()
+}
 const perfiles = ref(perfilStore.perfil)
 
 </script>
@@ -87,7 +107,7 @@ const perfiles = ref(perfilStore.perfil)
     </el-row>
     <div >
         <el-button class="shake" @click="editarPerfil(perfil)" >Editar Perfil</el-button>
-        <el-button class="shake" style="background-color: #C62540;">Eliminar</el-button>
+        <el-button class="shake" @click="eliminarPerfil(perfil)" style="background-color: #C62540;">Eliminar</el-button>
     </div>
 </el-card>
 </div>

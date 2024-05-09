@@ -1,3 +1,4 @@
+import { th } from "element-plus/es/locale/index.mjs";
 import { defineStore } from "pinia";
 
 interface Perfil{
@@ -53,6 +54,9 @@ interface Perfil{
                     if(i !== -1){
                         this.perfil[i] = perfilActualizado
                     }
+                },
+                deletePerfil(this: {perfil:Perfil[]}, perfilId:string){
+                    this.perfil= this.perfil.filter(perfil => perfil.id !== perfilId)
                 }
     }
   })
