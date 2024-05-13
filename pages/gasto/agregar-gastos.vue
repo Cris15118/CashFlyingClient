@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { useGastoStore } from "~/stores/gastoStore";
+import { useAuthStore } from "~/stores/authStore";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import type { FormProps } from "element-plus";
 import { uid } from "uid";
 import Alerta from "~/components/Alerta.vue";
+import { storeToRefs } from 'pinia';
 
-definePageMeta({
-  middleware: 'auth',
-})
+const {authenticated} = storeToRefs(useAuthStore())
+
 
 interface Gasto{
   id:string,

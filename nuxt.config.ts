@@ -15,7 +15,7 @@ const config: NuxtConfig = {
     "@element-plus/nuxt",
     'nuxt-icon',
     '@nuxtjs/google-fonts',
-    '@nuxtjs/supabase'
+  
   ],
   styleResources: {
     scss: [
@@ -37,11 +37,7 @@ const config: NuxtConfig = {
       }
     }
   },
-  supabase: {
-    url:process.env.SUPABASE_URL,
-    key:process.env.SUPABASE_KEY,
-    redirect:false
-  }
+ 
 }
 
 export default config

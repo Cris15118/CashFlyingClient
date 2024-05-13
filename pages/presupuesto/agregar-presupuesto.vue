@@ -1,11 +1,12 @@
 <script setup lang='ts'>
 import { usePresupuestoStore } from "~/stores/presupuestoStore";
+import { useAuthStore } from "~/stores/authStore";
 import { useRouter } from "vue-router";
 import Alerta from "~/components/Alerta.vue";
+import { storeToRefs } from 'pinia';
 
-definePageMeta({
-  middleware:'auth',
-})
+const {authenticated} = storeToRefs(useAuthStore())
+
 
 interface Presupuesto{
   saldo:number
@@ -17,6 +18,7 @@ const presupuestoStore = usePresupuestoStore()
 const error = ref('')
 const router = useRouter()
 const añadirSaldo = ()=>{
+  
   const {saldo}= presupuesto
   if(saldo <= 0){
     error.value = 'La cantidad no es válida'

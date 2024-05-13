@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { computed, watchEffect } from "vue";
+import { computed, watchEffect, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { formatearCantidad, formatearFecha } from "~/helpers";
 import { useGastoStore } from "~/stores/gastoStore";
+import { useAuthStore } from "~/stores/authStore";
 import { usePresupuestoStore } from "~/stores/presupuestoStore";
 import Alerta from "~/components/Alerta.vue";
 import IconoCasa from "../public/img/icono_casa.svg";
@@ -11,11 +12,11 @@ import IconoGastos from "../public/img/icono_gastos.svg";
 import IconoOcio from "../public/img/icono_ocio.svg";
 import IconoSalud from "../public/img/icono_salud.svg";
 import IconoSuscripciones from "../public/img/icono_suscripciones.svg";
+import { listarGastos } from "~/services/gastosServices.js";
+import { storeToRefs } from 'pinia';
 
+const {authenticated} = storeToRefs(useAuthStore())
 
-definePageMeta({
-  middleware: 'auth',
-})
 
 // Diccionario de iconos para acceder mas facilmente
 const diccionarioIConos = {
@@ -41,6 +42,15 @@ const gastos = ref(gastoStore.gastos);
 const categoriaSeleccionada= ref('')
 const error = ref("");
 const router = useRouter();
+
+// onMounted(async ()=>{
+//   try{
+//     const response = await listarGastos()
+//     gastoStore.actualizarListadoGastos(response.data)
+//   }catch(error){
+//     console.error("Error al obtener los datos: ", error)
+//   }
+// })
 
 // Gastado: función que da la suma de todos los gastos
 const gastado = computed(() => {

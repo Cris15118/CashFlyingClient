@@ -2,14 +2,15 @@
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router';
 import { usePerfilStore } from '~/stores/perfilStore';
+import { useAuthStore } from '~/stores/authStore';
 import Alerta from '~/components/Alerta.vue';
 import type { ComponentSize, FormProps } from 'element-plus'
 import { uid } from 'uid';
+import { storeToRefs } from 'pinia';
+
+const {authenticated} = storeToRefs(useAuthStore())
 
 
-definePageMeta({
-  middleware: 'auth',
-})
 interface Perfil{
   id: string ,
   nombre:string,

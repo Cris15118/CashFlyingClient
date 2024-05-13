@@ -1,26 +1,20 @@
 <script lang="ts" setup>
+import { useAuthStore } from "~/stores/authStore";
+import { storeToRefs } from "pinia";
 import { ref } from "vue";
 import Logo from "./Logo.vue";
 
-
-const supaAuth = useSupabaseClient().auth
-const user = useSupabaseUser()
+const authStore = useAuthStore()
+const {authenticated} = storeToRefs(useAuthStore())
+const router = useRouter()
 const activeIndex = ref("0");
 const handleSelect = (key: string, keyPath: string[]) => {
-  
 };
 
-const logout = async ()=>{
-  const {error} = await supaAuth.signOut()
-  if(error){
-    error.value = error.message
-    setTimeout(()=>{
-      error.value=''
-    },3000)
-    return
-  }else{
-    return navigateTo('/')
-  }
+
+const logout =  ()=>{
+  authStore.logoutUser()
+  router.push('/')
 }
 </script>
 <template>
@@ -34,7 +28,7 @@ const logout = async ()=>{
   <NuxtLink to="/"> <el-menu-item>
       <Logo/>
     </el-menu-item></NuxtLink>
-  <div v-if="!user">
+  <div v-if="!authenticated">
       <NuxtLink to="/"> <el-menu-item index="0">
       <Icon name="dashicons:admin-home" size="1.5em" class="fuentes"></Icon>
       <p class="fuentes">Home</p>
@@ -54,12 +48,12 @@ const logout = async ()=>{
     </el-menu-item></NuxtLink>
    </div>
     
-    <div class="login" v-if="!user" >
+    <div class="login" v-if="!authenticated" >
     <Icon name="fa6-solid:arrow-right-to-bracket" style="margin-top: 20;" class="fuentes"></Icon>
-    <NuxtLink to="/auth/login"><el-menu-item index="3" class="fuentes">Login</el-menu-item></NuxtLink>
+    <NuxtLink to="/Identity/Login"><el-menu-item index="3" class="fuentes">Login</el-menu-item></NuxtLink>
     </div>
     <div class="login" v-else >
-     <NuxtLink to="/perfil/agregar-perfil"><p >Bienvenido: {{ user.email }}</p></NuxtLink> 
+     <NuxtLink to="/perfil/agregar-perfil"><p > Bienvenido: </p></NuxtLink> 
 
     <Icon name="fa6-solid:arrow-right-from-bracket" style="margin-top: 20;" class="fuentes"></Icon>
     <NuxtLink to="/"><el-menu-item index="3" class="fuentes" @click="logout">Salir</el-menu-item></NuxtLink>

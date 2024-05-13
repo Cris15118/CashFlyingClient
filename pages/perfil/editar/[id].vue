@@ -1,14 +1,15 @@
 <script setup lang='ts'>
 import { usePerfilStore } from '~/stores/perfilStore';
+import { useAuthStore } from '~/stores/authStore';
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import Alerta from '~/components/Alerta.vue';
 import { uid } from 'uid';
+import { storeToRefs } from 'pinia';
+
+const {authenticated} = storeToRefs(useAuthStore())
 
 
-definePageMeta({
-    middleware: 'auth'
-})
 interface Perfil{
   id: string,
   nombre:string,

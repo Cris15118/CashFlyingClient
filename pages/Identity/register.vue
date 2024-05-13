@@ -1,26 +1,33 @@
 <script setup lang='ts'>
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '~/stores/authStore';
+import { storeToRefs } from 'pinia';
 import { reactive, ref } from 'vue'
+import Alerta from '~/components/Alerta.vue';
 import type { FormProps } from 'element-plus'
 
-definePageMeta({
-  middleware:'unauth',
-})
-
-const supaAuth = useSupabaseClient().auth
+const authStore = useAuthStore()
+const {authenticated} = storeToRefs(useAuthStore()) 
+const error = ref('')
+const router = useRouter()
 const labelPosition = ref<FormProps['labelPosition']>('top')
 
-const credentials = reactive({
+interface User{
+    id:string,
+    email:string,
+    password: string
+}
+
+const user = ref({
+  id: '',
   email: '',
   password: '',
 })
+
 const register = async ()=>{
-  const {error} = await supaAuth.signUp(credentials)
-  if(error){
-    alert(error.message)
-  }else{
-    return navigateTo('/')
-  }
-}
+  await authStore.registerUser(user.value)
+ router.push('/Identity/Login')
+ }
 </script>
 
 <template>
@@ -30,15 +37,15 @@ const register = async ()=>{
   <el-form
     :label-position="labelPosition"
     label-width="auto"
-    :model="credentials"
+    :model="user"
     @submit.prevent="register"
     style="width: 100%;"
   >
     <el-form-item label="Email">
-      <el-input  type="email" v-model="credentials.email"/>
+      <el-input  type="email" v-model="user.email"/>
     </el-form-item>
     <el-form-item label="Password">
-      <el-input type="password" v-model="credentials.password"/>
+      <el-input type="password" v-model="user.password"/>
     </el-form-item>
     <el-form-item>
         <el-button class="shake" style="width: 100%" @click="register">Resgistro</el-button>

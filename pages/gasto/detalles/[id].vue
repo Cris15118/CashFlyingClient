@@ -4,6 +4,7 @@ import { uid } from 'uid';
 import { formatearCantidad, formatearFecha } from "~/helpers";
 import { useRouter } from "vue-router";
 import { useGastoStore } from '~/stores/gastoStore';
+import { useAuthStore } from '~/stores/authStore';
 import Alerta from '~/components/Alerta.vue';
 import IconoCasa from "../public/img/icono_casa.svg";
 import IconoComida from "../public/img/icono_comida.svg";
@@ -11,10 +12,10 @@ import IconoGastos from "../public/img/icono_gastos.svg";
 import IconoOcio from "../public/img/icono_ocio.svg";
 import IconoSalud from "../public/img/icono_salud.svg";
 import IconoSuscripcion from "../public/img/icono_suscripciones.svg";
+import { storeToRefs } from 'pinia';
 
-definePageMeta({
-  middleware: 'auth',
-})
+const {authenticated} = storeToRefs(useAuthStore())
+
 const diccionarioIConos = {
   casa: IconoCasa,
   comida: IconoComida,

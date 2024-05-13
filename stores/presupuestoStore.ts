@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { agregarPresupuesto } from "~/services/presupuestoServices";
 
 
 
@@ -15,8 +16,13 @@ export const usePresupuestoStore = defineStore('presupuesto', {
  
     },
     actions:{
-        añadirSaldo(nuevoSaldo:number){
-            this.saldo = nuevoSaldo
+       async añadirSaldo(nuevoPresupuesto:number){
+        try {
+            const response = await agregarPresupuesto({saldo:nuevoPresupuesto})
+        } catch (error) {
+            console.log(error)
+        }
+          
         },
        
     }

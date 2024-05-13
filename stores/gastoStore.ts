@@ -40,6 +40,9 @@ export const useGastoStore = defineStore('gasto',{
             }
             this.gastos.push(nuevoGasto)
         },
+        actualizarListadoGastos(this:{gastos: Gasto[]}, nuevosGasto:Gasto[]){
+            this.gastos= nuevosGasto
+        },
         updateGasto(this: {gastos: Gasto[]}, gastoActualizado: Gasto){
             const i = this.gastos.findIndex(gasto => gasto.id === gastoActualizado.id)
             if(i !== -1){

@@ -2,12 +2,14 @@
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { usePerfilStore } from '~/stores/perfilStore';
+import { useAuthStore } from '~/stores/authStore';
 import Alerta from '~/components/Alerta.vue';
 import { uid } from 'uid';
+import { storeToRefs } from 'pinia';
 
-definePageMeta({
-  middleware:'auth'
-})
+const {authenticated} = storeToRefs(useAuthStore())
+
+
 
 interface Perfil{
   id: string,
@@ -23,8 +25,7 @@ interface Perfil{
   pais:string
 }
 
-const supaAuth = useSupabaseClient().auth
-const user = useSupabaseUser()
+
 const router=useRouter()
 const perfilStore =usePerfilStore()
 const perfilId = router.currentRoute.value.params.id
@@ -67,7 +68,7 @@ const logout = async ()=>{
     },3000)
     return
   }else{
-    return navigateTo('/auth/register')
+    return navigateTo('/Identity/register')
   }
 }
 const eliminarPerfil = (perfil:string)=>{
