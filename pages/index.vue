@@ -3,8 +3,9 @@
 </script>
 
 <template>
-  <h1>GESTION DE GASTOS</h1>
+  <h1 class="encabezado">GESTION DE GASTOS</h1>
 </template>
 <style scoped lang='scss'>
+@import "../assets/styles/encabezado.scss"
 
 </style>

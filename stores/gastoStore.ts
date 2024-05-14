@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { uid } from "uid";
+import { agregarGasto } from "~/services/gastosServices";
 
 
 interface Gasto{
@@ -22,7 +22,7 @@ export const useGastoStore = defineStore('gasto',{
            state.gastos.filter(gasto=> gasto.categoria === gastoCategoria)
     },
     actions:{
-        añadirGasto(
+      async añadirGasto(
             this: {gastos: Gasto[]},
             nombre:string,
             cantidad:number,
@@ -30,18 +30,19 @@ export const useGastoStore = defineStore('gasto',{
             descripcion:string,
             fecha:string
         ){
-            const nuevoGasto: Gasto = {
-               id:uid(),
+             const nuevoGasto: Gasto = {
                nombre,
                cantidad,
                categoria,
                descripcion,
-               fecha
+               fecha,}
+            const response = await agregarGasto()
+            console.log(response)
+           
+            if(response){
+                 this.gastos.push(nuevoGasto)
             }
-            this.gastos.push(nuevoGasto)
-        },
-        actualizarListadoGastos(this:{gastos: Gasto[]}, nuevosGasto:Gasto[]){
-            this.gastos= nuevosGasto
+
         },
         updateGasto(this: {gastos: Gasto[]}, gastoActualizado: Gasto){
             const i = this.gastos.findIndex(gasto => gasto.id === gastoActualizado.id)

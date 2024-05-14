@@ -56,7 +56,6 @@ onMounted(()=>{
   }else{
     error.value ="Usuario no existe"
   }
-  console.log("EN el if " + perfilSeleccionado)
 })
 
 //Actualizar los datos del perfil
@@ -84,7 +83,7 @@ const actualizarPerfil = ()=>{
 </script>
 
 <template>
-  <h1>Editar Perfil de Usuario</h1>
+  <h1 class="encabezado">Editar Perfil de Usuario</h1>
  
   <div class="contenedor">
   <el-form
@@ -151,6 +150,7 @@ const actualizarPerfil = ()=>{
 @import "../../../assets/styles/contenedor.scss";
 @import "../../../assets/styles/variables.scss";
 @import "../../../assets/styles/boton.scss";
+@import "../../../assets/styles/encabezado.scss";
 .el-row{
   margin: 3rem;
 }

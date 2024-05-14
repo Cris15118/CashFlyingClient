@@ -70,7 +70,7 @@ const gastos= ref(gastoStore.gastos)
 </script>
 
 <template>
-    <h1>Detalles</h1>
+    <h1 class="encabezado">Detalles</h1>
   <div>
     <Alerta v-if="error">{{ error }}</Alerta>
   </div>
@@ -103,6 +103,7 @@ const gastos= ref(gastoStore.gastos)
 <style scoped lang='scss'>
 @import "../../../assets/styles/variables.scss";
 @import "../../../assets/styles/boton.scss";
+@import "../../../assets/styles/encabezado.scss";
 .card{
   width: 90%;
   max-width: 80rem;

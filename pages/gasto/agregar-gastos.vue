@@ -72,10 +72,10 @@ const gastos = gastoStore.gastos
 </script>
 
 <template>
-  <h1>Planifica tus Gastos</h1>
+  <h1 class="encabezado">Planifica tus Gastos</h1>
   
   <div class="contenedor" >
-    <h2>Añadir Gastos</h2>
+    <h2 class="subtitulo">Añadir Gastos</h2>
   
     <el-form
       :label-position="labelPosition"
@@ -126,6 +126,8 @@ const gastos = gastoStore.gastos
 @import "../../assets/styles/variables.scss";
 @import "../../assets/styles/boton.scss";
 @import "../../assets/styles/contenedor.scss";
+@import "../../assets/styles/encabezado.scss";
+@import "../../assets/styles/subtitulo.scss";
 .presupuesto {
   width: 100%;
 }

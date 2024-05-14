@@ -38,7 +38,7 @@ const presupuestos = presupuestoStore.presupueto
 
 <template>
   <div class="contenedor">
-    <h2>Definir Saldo</h2>
+    <h2 class="subtitulo">Definir Saldo</h2>
     <el-form
     style="width: 100%;"
     size="large"
@@ -59,4 +59,5 @@ const presupuestos = presupuestoStore.presupueto
 @import "../../assets/styles/variables.scss";
 @import "../../assets/styles/boton.scss";
 @import "../../assets/styles/contenedor.scss";
+@import "../../assets/styles/subtitulo.scss";
 </style>

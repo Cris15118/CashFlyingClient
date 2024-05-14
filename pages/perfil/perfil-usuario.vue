@@ -82,7 +82,7 @@ const perfiles = ref(perfilStore.perfil)
 </script>
 
 <template>
-  <h1>Perfil del Usuario</h1>
+  <h1 class="encabezado">Perfil del Usuario</h1>
   <div class="contenedor">
   
     <Alerta v-if="error">{{ error }}</Alerta>
@@ -114,8 +114,9 @@ const perfiles = ref(perfilStore.perfil)
 </div>
 </template>
 <style scoped lang='scss'>
-@import "../assets/styles/contenedor.scss";
-@import "../assets/styles/variables.scss";
-@import "../assets/styles/boton.scss";
+@import "../../assets/styles/contenedor.scss";
+@import "../../assets/styles/variables.scss";
+@import "../../assets/styles/boton.scss";
+@import "../../assets/styles/encabezado.scss"
 
 </style>

@@ -35,9 +35,9 @@ const login = async () => {
 </script>
 
 <template>
-  <h1>Bienvenido a CashFlying</h1>
+  <h1 class="encabezado">Bienvenido a CashFlying</h1>
   <div class="contenedor" style="width: 30rem;">
-    <p class="login">LOGIN</p>
+    <h2 class="subtitulo">LOGIN</h2>
     <Alerta v-if="error">{{ error }}</Alerta>
   <el-form
     :label-position="labelPosition"
@@ -63,13 +63,8 @@ const login = async () => {
 @import "../../assets/styles/contenedor.scss";
 @import "../../assets/styles/variables.scss";
 @import "../../assets/styles/boton.scss";
-.login{
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: bold;
-  color:$secundary-color ;
-  margin: 0 0 0.8rem 0;
-}
+@import "../../assets/styles/encabezado.scss";
+@import "../../assets/styles/subtitulo.scss";
 .el-link {
   margin-right: 8px;
   font-size: large;

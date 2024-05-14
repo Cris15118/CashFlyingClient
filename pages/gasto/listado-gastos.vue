@@ -15,6 +15,7 @@ import IconoSuscripciones from "../public/img/icono_suscripciones.svg";
 import { listarGastos } from "~/services/gastosServices.js";
 import { storeToRefs } from 'pinia';
 
+
 const {authenticated} = storeToRefs(useAuthStore())
 
 
@@ -43,14 +44,7 @@ const categoriaSeleccionada= ref('')
 const error = ref("");
 const router = useRouter();
 
-// onMounted(async ()=>{
-//   try{
-//     const response = await listarGastos()
-//     gastoStore.actualizarListadoGastos(response.data)
-//   }catch(error){
-//     console.error("Error al obtener los datos: ", error)
-//   }
-// })
+
 
 // Gastado: función que da la suma de todos los gastos
 const gastado = computed(() => {
@@ -61,6 +55,7 @@ const gastado = computed(() => {
 const disponible = computed(() => {
   return presupuestoStore.saldo - gastado.value;
 });
+
 
 // Verificar el presupuesto automáticamente cada vez que cambio los gastos
 watchEffect(() => {
@@ -97,10 +92,10 @@ const gastosFiltrados = computed(()=>{
 </script>
 
 <template>
-  <h1>Listado de Gastos</h1>
+  <h1 class="encabezado">Listado de Gastos</h1>
   <div class="contenedor">
     <el-card v-if="presupuestoStore.saldo === 0">
-      <h2>No hay Saldo Establecido</h2>
+      <h2 class="subtitulo">No hay Saldo Establecido</h2>
       <el-button class="shake" @click="añadirPresupuesto" style="width: 100%"
         >agrega un presupuesto</el-button
       >
@@ -150,7 +145,7 @@ const gastosFiltrados = computed(()=>{
 </el-form>
   </div>
   <div class="card">
-  <h2>{{ gastosFiltrados.length > 0 ? "Gastos" : "No hay Gastos" }}</h2>
+  <h2 class="subtitulo">{{ gastosFiltrados.length > 0 ? "Gastos" : "No hay Gastos" }}</h2>
 
     <el-card
       style="border-radius: 2.5rem; margin: 1rem"
@@ -188,6 +183,8 @@ const gastosFiltrados = computed(()=>{
 @import "../../assets/styles/variables.scss";
 @import "../../assets/styles/boton.scss";
 @import "../../assets/styles/contenedor.scss";
+@import "../../assets/styles/encabezado.scss";
+@import "../../assets/styles/subtitulo.scss";
 .btn-presupuesto {
   display: flex;
   justify-content: space-evenly;

@@ -17,12 +17,11 @@ export const usePresupuestoStore = defineStore('presupuesto', {
     },
     actions:{
        async añadirSaldo(nuevoPresupuesto:number){
-        try {
-            const response = await agregarPresupuesto({saldo:nuevoPresupuesto})
-        } catch (error) {
-            console.log(error)
-        }
-          
+            const response = await agregarPresupuesto()
+            if(response){
+                this.saldo = nuevoPresupuesto
+            }     
+           
         },
        
     }

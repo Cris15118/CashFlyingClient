@@ -1,15 +1,15 @@
 import service from "./config.services";
 
 const listarGastos = ()=> {
-    return service.get("/Gasto/ListadoGastos")
+    return service.get("/Gasto/listad-gastos")
 }
 
 const detalleGasto = (gastoId) =>{
     return service.get(`/Gasto/VerGasto/${gastoId}`)
 }
 
-const agregarGasto = (newGasto) =>{
-    return service.post("/Gasto/AgregarGasto", newGasto)
+const agregarGasto = (nuevoGasto) =>{
+    return service.post("/Gasto/AgregarGasto", nuevoGasto)
 }
 
 const editarGasto = (gastoId, updateGasto)=>{

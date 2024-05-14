@@ -67,9 +67,9 @@ const actualizarGasto = () =>{
 </script>
 
 <template>
-  <h1>EDITANDO</h1>
+  <h1 class="encabezado">Editar</h1>
   <div class="contenedor" >
-    <h2>Editar Gastos</h2>
+    <h2 class="subtitulo">Editar Gastos</h2>
   
     <el-form
       :label-position="labelPosition"
@@ -117,6 +117,8 @@ const actualizarGasto = () =>{
 </template>
 <style scoped lang='scss'>
 @import "../../../assets/styles/contenedor.scss";
-@import "../../../assets/styles/boton.scss"
+@import "../../../assets/styles/boton.scss";
+@import "../../../assets/styles/encabezado.scss";
+@import "../../../assets/styles/subtitulo.scss";
 
 </style>

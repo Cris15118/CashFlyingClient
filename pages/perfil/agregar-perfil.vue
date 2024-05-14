@@ -82,7 +82,7 @@ const agregarPerfil = ()=>{
 </script>
 
 <template>
-  <h1>Agrega tu Perfil de Usuario</h1>
+  <h1 class="encabezado">Agrega tu Perfil de Usuario</h1>
   <div class="contenedor">
   <el-form
     ref="form"
@@ -147,9 +147,10 @@ const agregarPerfil = ()=>{
 </div>
 </template>
 <style scoped lang='scss'>
-@import "../assets/styles/variables.scss";
-@import "../assets/styles/boton.scss";
-@import "../assets/styles/contenedor.scss";
+@import "../../assets/styles/variables.scss";
+@import "../../assets/styles/boton.scss";
+@import "../../assets/styles/contenedor.scss";
+@import "../../assets/styles/encabezado.scss";
 .el-row{
   margin: 3rem;
 }
