@@ -36,7 +36,7 @@ const logout =  ()=>{
   </div>
    <div class="navbar" v-else>
    <NuxtLink to="/gasto/agregar-gastos"><el-menu-item index="1">
-    <Icon name="heroicons-solid:clipboard-list" size="1.5rem" class="fuentes"></Icon>
+    <Icon name="i-heroicons:document-plus-solid" size="1.5rem" class="fuentes"></Icon>
     <p class="fuentes">Añadir Gastos</p>
 
    </el-menu-item>
@@ -49,14 +49,18 @@ const logout =  ()=>{
    </div>
     
     <div class="login" v-if="!authenticated" >
-    <Icon name="fa6-solid:arrow-right-to-bracket" style="margin-top: 20;" class="fuentes"></Icon>
-    <NuxtLink to="/Identity/Login"><el-menu-item index="3" class="fuentes">Login</el-menu-item></NuxtLink>
+   
+    <NuxtLink to="/Identity/Login"><el-menu-item index="3" class="fuentes">
+      <Icon name="fa6-solid:arrow-right-to-bracket" style="margin-top: 2;" class="fuentes"></Icon>
+     <p class="fuentes">Login</p> 
+    </el-menu-item></NuxtLink>
     </div>
     <div class="login" v-else >
-     <NuxtLink to="/perfil/agregar-perfil"><p > Bienvenido: </p></NuxtLink> 
+      
+     <NuxtLink to="/perfil/agregar-perfil"><el-menu-item index="3" class="fuentes" @click="logout"><Icon name="i-heroicons:user-plus-16-solid" style="margin:15 8;" size="1.5em" class="fuentes" ></Icon><p class="fuentes">Añade tu Perfil</p></el-menu-item></NuxtLink> 
 
-    <Icon name="fa6-solid:arrow-right-from-bracket" style="margin-top: 20;" class="fuentes"></Icon>
-    <NuxtLink to="/"><el-menu-item index="3" class="fuentes" @click="logout">Salir</el-menu-item></NuxtLink>
+    
+    <NuxtLink to="/"><el-menu-item index="4" class="fuentes" @click="logout"><Icon name="fa6-solid:arrow-right-from-bracket" style="margin-top: 2;" class="fuentes"></Icon><p class="fuentes">Salir</p></el-menu-item></NuxtLink>
     </div>
     
   </el-menu>
@@ -78,6 +82,6 @@ p{
   margin: 1rem;
   color: $primary-color;
   text-decoration: underline;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 </style>

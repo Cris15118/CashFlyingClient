@@ -1,7 +1,7 @@
 import service from "./config.services";
 
 const listarGastos = ()=> {
-    return service.get("/Gasto/listad-gastos")
+    return service.get("/Gasto/listado-gastos")
 }
 
 const detalleGasto = (gastoId) =>{

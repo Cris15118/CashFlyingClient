@@ -86,6 +86,7 @@ const actualizarPerfil = ()=>{
   <h1 class="encabezado">Editar Perfil de Usuario</h1>
  
   <div class="contenedor">
+    <h2 class="subtitulo">Actualiza tus Datos</h2>
   <el-form
     ref="form"
     style="max-width: 100%"
@@ -151,6 +152,7 @@ const actualizarPerfil = ()=>{
 @import "../../../assets/styles/variables.scss";
 @import "../../../assets/styles/boton.scss";
 @import "../../../assets/styles/encabezado.scss";
+@import "../../../assets/styles/subtitulo.scss";
 .el-row{
   margin: 3rem;
 }
