@@ -59,9 +59,12 @@ const disponible = computed(() => {
 
 // Verificar el presupuesto automáticamente cada vez que cambio los gastos
 watchEffect(() => {
-  if (gastado.value > presupuestoStore.saldo) {
+  if(gastado.value !== undefined && presupuestoStore.saldo !== undefined){
+    if (gastado.value > presupuestoStore.saldo ) {
     error.value = "¡Cuidado! Tus gastos son superiores a tus ingresos.";
   }
+  }
+  
 });
 
 // Funciones de redirección
@@ -133,7 +136,7 @@ const gastosFiltrados = computed(()=>{
     >
     <el-form-item label="Filtrar Gasto" size="large">
         <el-select placeholder="-- Seleccionar --" v-model="categoriaSeleccionada">
-          <el-option label="--seleccionar--" value="" />
+          <el-option label="--Seleccionar--" value="" />
           <el-option label="Casa" value="casa" />
           <el-option label="Gastos Varios" value="gastos" />
           <el-option label="Ocio" value="ocio" />
@@ -144,11 +147,10 @@ const gastosFiltrados = computed(()=>{
       </el-form-item>
 </el-form>
   </div>
-  <div class="card">
+  <div class="contenedor">
   <h2 class="subtitulo">{{ gastosFiltrados.length > 0 ? "Gastos" : "No hay Gastos" }}</h2>
-
     <el-card
-      style="border-radius: 2.5rem; margin: 1rem"
+      style="width: 100%;border-radius: 1rem;margin-bottom: 1rem;"
       v-for="gasto in gastosFiltrados"
       :key="gasto.id"
       shadow="always"
@@ -189,11 +191,7 @@ const gastosFiltrados = computed(()=>{
   display: flex;
   justify-content: space-evenly;
 }
-.card {
-  width: 90%;
-  max-width: 80rem;
-  margin: 5rem;
-}
+
 .gasto {
   display: flex;
   justify-content: space-between;

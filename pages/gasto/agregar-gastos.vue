@@ -6,18 +6,17 @@ import { useRouter } from "vue-router";
 import type { FormProps } from "element-plus";
 import { uid } from "uid";
 import Alerta from "~/components/Alerta.vue";
-import { storeToRefs } from 'pinia';
+import { storeToRefs } from "pinia";
 
-const {authenticated} = storeToRefs(useAuthStore())
+const { authenticated } = storeToRefs(useAuthStore());
 
-
-interface Gasto{
-  id:string,
-  nombre: string,
-  cantidad: number
-  categoria: string
-  descripcion:string
-  fecha: string
+interface Gasto {
+  id: string;
+  nombre: string;
+  cantidad: number;
+  categoria: string;
+  descripcion: string;
+  fecha: string;
 }
 
 const gasto = reactive<Gasto>({
@@ -26,71 +25,75 @@ const gasto = reactive<Gasto>({
   cantidad: 0,
   categoria: "",
   descripcion: "",
-  fecha: ""
+  fecha: "",
 });
 
-const gastoStore = useGastoStore()
-const router = useRouter()
-const error = ref('')
+const gastoStore = useGastoStore();
+const router = useRouter();
+const error = ref("");
 
-const labelPosition = ref<FormProps["labelPosition"]>('left');
+const labelPosition = ref<FormProps["labelPosition"]>("left");
 
 // Añadir gastos a la vista de listado-gastos
-const añadirGasto = ()=>{
-  const {nombre, cantidad, categoria, descripcion,fecha}= gasto
-   //Validar que los campos no estén vacíos
-  if([nombre, cantidad, categoria,descripcion,fecha].includes('')){
-    error.value= 'Todos los campos son obligatorios'
-    setTimeout(()=>{
-      error.value=''
-    },3000)
-    return
+const añadirGasto = () => {
+  const { nombre, cantidad, categoria, descripcion, fecha } = gasto;
+  //Validar que los campos no estén vacíos
+  if ([nombre, cantidad, categoria, descripcion, fecha].includes("")) {
+    error.value = "Todos los campos son obligatorios";
+    setTimeout(() => {
+      error.value = "";
+    }, 3000);
+    return;
   }
   //Validar que la cantidad no sea 0
-  if(cantidad <= 0){
-    error.value = 'La cantidad no es válida'
-    setTimeout(()=>{
-      error.value=''
-    },3000)
-    return
-  }else{
+  if (cantidad <= 0) {
+    error.value = "La cantidad no es válida";
+    setTimeout(() => {
+      error.value = "";
+    }, 3000);
+    return;
+  } else {
     gastoStore.añadirGasto(
-    gasto.nombre,
-    gasto.cantidad,
-    gasto.categoria,
-    gasto.descripcion,
-    gasto.fecha
-    )
-    
+      gasto.nombre,
+      gasto.cantidad,
+      gasto.categoria,
+      gasto.descripcion,
+      gasto.fecha
+    );
   }
-  router.push('/gasto/listado-gastos')
-}
+  router.push("/gasto/listado-gastos");
+};
 
-
-const gastos = gastoStore.gastos
-
+const gastos = gastoStore.gastos;
 </script>
 
 <template>
   <h1 class="encabezado">Planifica tus Gastos</h1>
-  
-  <div class="contenedor" >
+
+  <div class="contenedor">
     <h2 class="subtitulo">Añadir Gastos</h2>
-  
+
     <el-form
       :label-position="labelPosition"
       label-width="auto"
-      style="width: 100%;"
+      style="width: 100%"
       size="large"
       :model="gasto"
-      @submit.prevent="añadirGasto"
+      @submit.prevent="añadirGasto;"
     >
-    <Alerta v-if="error">{{ error }}</Alerta>
+      <Alerta v-if="error">{{ error }}</Alerta>
       <el-form-item label="Nombre Gasto" size="large">
-        <el-input v-model="gasto.nombre"  placeholder="Añade el nombre del gasto" />
+        <el-input
+          v-model="gasto.nombre"
+          placeholder="Añade el nombre del gasto"
+        />
       </el-form-item>
       <el-form-item label="Cantidad" size="large">
-        <el-input type="number" v-model.number="gasto.cantidad"  placeholder="Añade la cantidad del gasto, ej.20" />
+        <el-input
+          type="number"
+          v-model.number="gasto.cantidad"
+          placeholder="Añade la cantidad del gasto, ej.20"
+        />
       </el-form-item>
       <el-form-item label="Categoría" size="large">
         <el-select placeholder="-- Seleccionar --" v-model="gasto.categoria">
@@ -103,21 +106,26 @@ const gastos = gastoStore.gastos
         </el-select>
       </el-form-item>
       <el-form-item label="Fecha del Gasto">
-      <el-col :span="11">
-        <el-date-picker
-          v-model="gasto.fecha"
-          type="date"
-          placeholder="Elige la Fecha"
-          style="width: 100%"
-          
-        />
-      </el-col>
-    </el-form-item>
+        <el-col :span="11">
+          <el-date-picker
+            v-model="gasto.fecha"
+            type="date"
+            placeholder="Elige la Fecha"
+            style="width: 100%"
+          />
+        </el-col>
+      </el-form-item>
       <el-form-item label="Descripción">
-      <el-input v-model="gasto.descripcion" type="textarea" placeholder="Escribe una descripción si así lo deseas"/>
-    </el-form-item>
+        <el-input
+          v-model="gasto.descripcion"
+          type="textarea"
+          placeholder="Escribe una descripción si así lo deseas"
+        />
+      </el-form-item>
       <el-form-item>
-        <el-button class="shake" style="width: 100%" @click="añadirGasto">Añadir Gasto</el-button>
+        <el-button class="shake" style="width: 100%" @click="añadirGasto"
+          >Añadir Gasto</el-button
+        >
       </el-form-item>
     </el-form>
   </div>

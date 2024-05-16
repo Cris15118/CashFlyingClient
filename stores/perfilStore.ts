@@ -1,62 +1,67 @@
-import { th } from "element-plus/es/locale/index.mjs";
 import { defineStore } from "pinia";
+import { uid } from "uid";
 
-interface Perfil{
-    id:string,
-    nombre:string,
-    apellidos:string,
-    email:string,
-    edad:number,
-    telefono:number,
-    calle:string,
-    numero:number,
-    poblacion:string,
-    provincia:string,
-    pais:string
-  }
+interface Perfil {
+  id: string;
+  nombre: string;
+  apellidos: string;
+  email: string;
+  edad: number;
+  telefono: number;
+  calle: string;
+  numero: number;
+  poblacion: string;
+  provincia: string;
+  pais: string;
+}
 
-  export const usePerfilStore = defineStore('perfil',{
-    state: ()=> ({
-        perfil: [] as Perfil[]
-    }),
-    getters:{
-        getUsuarioById: (state) => (perfilId:string) => state.perfil.find(perfil => perfil.id === perfilId),
-        
+export const usePerfilStore = defineStore("perfil", {
+  state: () => ({
+    perfil: [] as Perfil[],
+  }),
+  getters: {
+    getUsuarioById: (state) => (perfilId: string) =>
+      state.perfil.find((perfil) => perfil.id === perfilId),
+  },
+  actions: {
+    añadirPerfil(
+      this: { perfil: Perfil[] },
+      nombre: string,
+      apellidos: string,
+      email: string,
+      edad: number,
+      telefono: number,
+      calle: string,
+      numero: number,
+      poblacion: string,
+      provincia: string,
+      pais: string
+    ) {
+      const perfilNuevo: Perfil = {
+        id: uid(),
+        nombre,
+        apellidos,
+        email,
+        edad,
+        telefono,
+        calle,
+        numero,
+        poblacion,
+        provincia,
+        pais,
+      };
+      this.perfil.push(perfilNuevo);
     },
-    actions:{
-        añadirPerfil(this:{perfil: Perfil[]},
-            nombre:string,
-            apellidos:string,
-            email:string,
-            edad:number,
-            telefono:number,
-            calle:string,
-            numero:number,
-            poblacion:string,
-            provincia:string,
-            pais:string ){
-                const perfilNuevo: Perfil = {
-                    nombre,
-                    apellidos,
-                    email,
-                    edad,
-                    telefono,
-                    calle,
-                    numero,
-                    poblacion,
-                    provincia,
-                    pais
-                }
-                this.perfil.push(perfilNuevo)
-            },
-            UpdatePerfil(this:{perfil: Perfil[]}, perfilActualizado: Perfil){
-                    const i = this.perfil.findIndex(perfil => perfil.id === perfilActualizado.id)
-                    if(i !== -1){
-                        this.perfil[i] = perfilActualizado
-                    }
-                },
-                deletePerfil(this: {perfil:Perfil[]}, perfilId:string){
-                    this.perfil= this.perfil.filter(perfil => perfil.id !== perfilId)
-                }
-    }
-  })
+    UpdatePerfil(this: { perfil: Perfil[] }, perfilActualizado: Perfil) {
+      const i = this.perfil.findIndex(
+        (perfil) => perfil.id === perfilActualizado.id
+      );
+      if (i !== -1) {
+        this.perfil[i] = perfilActualizado;
+      }
+    },
+    deletePerfil(this: { perfil: Perfil[] }, perfilId: string) {
+      this.perfil = this.perfil.filter((perfil) => perfil.id !== perfilId);
+    },
+  },
+});

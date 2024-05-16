@@ -12,21 +12,62 @@ const error = ref('')
 const router = useRouter()
 const labelPosition = ref<FormProps['labelPosition']>('top')
 
-interface User{
+interface Usuario{
     id:string,
     email:string,
     password: string
 }
 
-const user = ref({
+const usuario = ref({
   id: '',
   email: '',
   password: '',
 })
+//Expresión regular para validar email
+ const isValidEmail = (email) =>{
+   const emailRegex =  /^[^\s@]+@[^\s@]+\.(es|com)$/
+   return emailRegex.test(email)
+ }
+ //Expresión regular para validar password
+ const isValidPassword = (password) => {
+  const passwordRegex = /^.{8,}$/
+  return passwordRegex.test(password)
+ }
 
+ //Función de registro de usuarios
 const register = async ()=>{
-  await authStore.registerUser(user.value)
+  //Valdar que todos los campos son obligatorios
+ if(!usuario.value || !usuario.value.email || !usuario.value.password){
+  error.value= "Todos los campos son obligatorios"
+  setTimeout(()=>{
+     error.value=''
+  }, 3000)
+  return
+ }
+ //Validar email
+  if(!isValidEmail(usuario.value.email)){
+   error.value="Email Incorrecto"
+   setTimeout(()=>{
+      error.value=''
+   }, 3000)
+   return
+  }
+  //Validar password
+  if(!isValidPassword(usuario.value.password)){
+   error.value="El Password debe contener al menos 8 caracteres"
+   setTimeout(()=>{
+      error.value=''
+   }, 4000)
+   return
+  }
+  //registrar usuarios
+ try {
+  await authStore.registerUser(usuario.value)
  router.push('/Identity/Login')
+ } catch (error) {
+  console.log(error)
+ }
+  
  }
 </script>
 
@@ -37,15 +78,17 @@ const register = async ()=>{
   <el-form
     :label-position="labelPosition"
     label-width="auto"
-    :model="user"
+    :model="usuario"
     @submit.prevent="register"
     style="width: 100%;"
   >
-    <el-form-item label="Email">
-      <el-input  type="email" v-model="user.email"/>
+  <Alerta v-if="error">{{ error }}</Alerta>
+    <el-form-item  label="Email"
+       >
+      <el-input  type="email" v-model="usuario.email"/>
     </el-form-item>
     <el-form-item label="Password">
-      <el-input type="password" v-model="user.password"/>
+      <el-input type="password" v-model="usuario.password"/>
     </el-form-item>
     <el-form-item>
         <el-button class="shake" style="width: 100%" @click="register">Resgistro</el-button>

@@ -46,7 +46,7 @@ onMounted(()=>{
 
 // Actualizar gastos
 const actualizarGasto = () =>{
-  if(!gasto.value.nombre|| !gasto.value.cantidad || !gasto.value.descripcion.includes('')){
+  if(!gasto.value.nombre|| !gasto.value.cantidad || !gasto.value.descripcion){
     error.value= 'Todos los campos son obligatorios'
     setTimeout(()=>{
       error.value=''
@@ -61,7 +61,7 @@ const actualizarGasto = () =>{
     return
 }else{
   gastoStore.updateGasto(gasto.value)
-  router.push("/gasto/listado-gastos")
+  router.push("/gasto/detalles/" + gasto.value.id)
 }
 }
 </script>

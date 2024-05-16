@@ -61,9 +61,15 @@ onMounted(()=>{
 const editarGasto = (gasto: Gasto) => {
     router.push("/gasto/editar/" + gasto.id)
 }
+const volver = ()=>{
+  router.push("/gasto/listado-gastos")
+}
 const eliminarGasto = (gasto:string)=>{
+  if(confirm("¿Desea Borrar este Gasto?")){
     gastoStore.deleteGasto(gasto.id)
     gastos.value = gastoStore.gastos
+    
+  }
     router.push("/gasto/listado-gastos")
 }
 const gastos= ref(gastoStore.gastos)
@@ -95,6 +101,7 @@ const gastos= ref(gastoStore.gastos)
     </div>
     <div class="editar-eliminar">
         <el-button class="shake" @click="editarGasto(gasto)">Editar</el-button>
+        <el-button class="shake" @click="volver" style="background-color: #00afff;">Volver</el-button>
         <el-button class="shake" @click="eliminarGasto(gasto)" style="background-color: #C62540;">Eliminar</el-button>
     </div>
 
@@ -105,9 +112,9 @@ const gastos= ref(gastoStore.gastos)
 @import "../../../assets/styles/boton.scss";
 @import "../../../assets/styles/encabezado.scss";
 .card{
-  width: 90%;
+  width: 80%;
   max-width: 80rem;
-  margin: 5rem;
+  margin: 5rem auto;
   border-radius: 2rem;
 }
 .gasto {

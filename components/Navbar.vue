@@ -57,10 +57,10 @@ const logout =  ()=>{
     </div>
     <div class="login" v-else >
       
-     <NuxtLink to="/perfil/agregar-perfil"><el-menu-item index="3" class="fuentes" @click="logout"><Icon name="i-heroicons:user-plus-16-solid" style="margin:15 8;" size="1.5em" class="fuentes" ></Icon><p class="fuentes">Añade tu Perfil</p></el-menu-item></NuxtLink> 
+     <NuxtLink to="/perfil/agregar-perfil"><el-menu-item index="4" class="fuentes"><Icon name="i-heroicons:user-plus-16-solid" style="margin:15 8;" size="1.5em" class="fuentes" ></Icon><p class="fuentes">Añade tu Perfil</p></el-menu-item></NuxtLink> 
 
     
-    <NuxtLink to="/"><el-menu-item index="4" class="fuentes" @click="logout"><Icon name="fa6-solid:arrow-right-from-bracket" style="margin-top: 2;" class="fuentes"></Icon><p class="fuentes">Salir</p></el-menu-item></NuxtLink>
+    <NuxtLink to="/"><el-menu-item index="5" class="fuentes" @click="logout"><Icon name="fa6-solid:arrow-right-from-bracket" style="margin-top: 2;" class="fuentes"></Icon><p class="fuentes">Salir</p></el-menu-item></NuxtLink>
     </div>
     
   </el-menu>
