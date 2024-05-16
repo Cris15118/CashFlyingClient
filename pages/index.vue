@@ -26,8 +26,7 @@
         <p class="parrafo">
           Categorías seleccionadas cuidadosamente para un facil seguimiento de
           tus gastos. Describe y toma nota para no tener sustos a final de mes.
-          <br />
-          Modifica los gastos tantas veces quieras según tus necesidades. <br />
+          Modifica los gastos tantas veces quieras según tus necesidades.
           Filtra por categorías para obtener visualmente donde van la mayoria de
           tus gastos.
         </p>
@@ -38,7 +37,7 @@
         <h2 class="subtitulo">Sin Sorpresas a final de mes</h2>
         <p class="parrafo">
           Ten pleno conocimiento de tus gastos y el dinero disponible a final de
-          mes.<br />Ahorra o invierte tu dinero. Ahora podrás hacerlo al conocer
+          mes.Ahorra o invierte tu dinero. Ahora podrás hacerlo al conocer
           exactamente tu situación al cabo del mes.
         </p>
       </div>
@@ -106,12 +105,12 @@
 @import "../assets/styles/subtitulo.scss";
 .content {
   text-align: left;
-  max-width: 25rem;
+  max-width: 20rem;
   margin: 5rem 9rem;
   letter-spacing: 0.2rem;
 }
 .parrafo {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-style: italic;
 }
 .foto {
@@ -163,18 +162,4 @@
   font-size: larger;
   padding: 1rem;
 }
-// @media screen and (max-with: 768px) {
-//   .fondo {
-//     width: 100%;
-//     margin: 3rem auto;
-//   }
-
-//   .opinion {
-//     width: 100%;
-//   }
-
-//   .colocar-opinion {
-//     margin: 3rem auto;
-//   }
-// }
 </style>
