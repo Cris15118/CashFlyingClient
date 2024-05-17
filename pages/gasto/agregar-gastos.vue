@@ -46,7 +46,7 @@ const añadirGasto = () => {
     return;
   }
   //Validar que la cantidad no sea 0
-  if (cantidad < 0) {
+  if (cantidad <= 0) {
     error.value = "La cantidad no es válida";
     setTimeout(() => {
       error.value = "";
