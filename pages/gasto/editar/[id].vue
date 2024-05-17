@@ -53,7 +53,7 @@ const actualizarGasto = () =>{
     },3000)
     return
   }
-  if(gasto.value.cantidad <= 0){
+  if(gasto.value.cantidad < 0){
     error.value = 'La cantidad no es válida'
     setTimeout(()=>{
       error.value=''
