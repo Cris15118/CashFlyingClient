@@ -93,7 +93,7 @@ const register = async ()=>{
     <el-form-item>
         <el-button class="shake" style="width: 100%" @click="register">Resgistro</el-button>
       </el-form-item>
-      <el-text size="large">Ya tienes cuenta? </el-text><el-link href="/auth/login" >Logueate!</el-link>
+      <el-text size="large">Ya tienes cuenta? </el-text><el-link href="/Identity/Login" >Logueate!</el-link>
   </el-form>
 </div>
 </template>
